@@ -33,7 +33,7 @@ pd = fitdist(originalfan,'normal')
 %%
 % Response surface design to estimate any nonlinear interactions among the factors. 
 % Generate the experimental runs for a Box-Behnken design in coded (normalized) variables [-1, 0, +1].
-CodedValue = bbdesign(3);
+CodedValue = ccdesign(3);
 %The first column is for the distance from radiator, 
 %the second column is for the pitch angle, 
 %and the third column is for the blade tip clearance.
