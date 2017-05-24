@@ -41,7 +41,7 @@ CodedValue = ccdesign(3);
 % Randomize the order of the runs, 
 % convert the coded design values to real-world units, 
 % and perform the experiment in the order specified.
-runorder = randperm(15);     % Random permutation of the runs
+runorder = randperm(size(CodedValue,1));     % Random permutation of the runs
 bounds = [1 1.5;15 35;1 2];  % Min and max values for each factor
 
 RealValue = zeros(size(CodedValue));
@@ -51,7 +51,7 @@ for i = 1:size(CodedValue,2) % Convert coded values to real-world units
     RealValue(:,i) = interp1([zmin zmax],bounds(i,:),CodedValue(:,i));
 end
 %Supposed real values
-TestResult = [837 864 829 856 880 879 872 874 834 833 860 859 874 876 875]';
+TestResult = [837 864 829 856 880 879 872 874 834 833 860 859 874 876 875 880 865 882 845 863 875 852 855 863]';
 %Display values
 disp({'Run Number','Distance','Pitch','Clearance','Airflow'})
 disp(sortrows([runorder' RealValue TestResult]))
