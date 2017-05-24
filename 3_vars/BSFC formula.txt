@@ -1,0 +1,7 @@
+// Brake Specific fuel consumption calculation
+// m_f = fuel mass flow (g/h)
+// P_b = dynamometer brake power (kW)
+// BSFC = brake specific fuel consumption (g/kWh)
+P_b = 2 * pi * n/60 * abs(T_d) / 1000;
+m_f = 2 *  Q/1000 * 60*n;
+BSFC = m_f / P_b;
