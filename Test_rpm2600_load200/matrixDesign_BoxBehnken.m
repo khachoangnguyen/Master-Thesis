@@ -28,5 +28,21 @@ matrix = [x1_max c2     x3_max;
           x1_min x2_max   c3;
           x1_min c2     x3_min;
           x1_max c2     x3_min];
+      
+%  matrix = [x1_max c2     x3_max;
+%           c1     c2       c3;
+%           c1     x2_max x3_max;
+%           x1_max x2_min   c3;
+%           x1_max x2_max   c3;
+%           x1_min x2_min   c3;
+%           c1     x2_max x3_min;
+%           x1_min c2     x3_max;
+%           c1     c2       c3;
+%           c1     c2       c3;
+%           c1     x2_min x3_min;
+%           c1     x2_min x3_max;
+%           x1_min x2_max   c3;
+%           x1_min c2     x3_min;
+%           x1_max c2     x3_min];     
 
 end
