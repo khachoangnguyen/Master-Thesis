@@ -48,10 +48,10 @@ disp(sortrows([runorder' matrix y]))
 % [b1] = fitting(x1,x2,x3,y)
 
 % Using Machine Learning toolbox
- Expmt = table(x1, x2, x3, ...
-    y,'VariableNames',{'Pi','CRP','SoI','BSFC'});
+Expmt = table(x1, x2, x3, y,'VariableNames',{'Pi','CRP','SoI','BSFC'});
 mdl = fitlm(Expmt,'BSFC~Pi*CRP*SoI-Pi:CRP:SoI+Pi^2+CRP^2+SoI^2');
 b2 = mdl.Coefficients
+
 % Visualize the coefficients
 figure()
 h = bar(mdl.Coefficients.Estimate(2:10));
@@ -69,6 +69,7 @@ title('Quadratic Model Coefficients')
 
 % [SS_e,s_e,SS_total,r_sq,r_sq_adj] = validation_test(matrix,b1,y)
 
+% Validation test results from Machine learning toolbox
 SS_e = mdl.SSE
 SS_total = mdl.SST
 r_sqr = mdl.Rsquared
