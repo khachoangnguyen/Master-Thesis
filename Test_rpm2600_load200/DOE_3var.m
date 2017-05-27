@@ -83,17 +83,4 @@ X0 = sum(bounds',1)/size(bounds',1);
 
 % Visualize surface response (x3 fixed at optimal value)
 figure()
-[F_eval,x1,x2] = VisualizeData(b,bounds,X_op);
-legend('BSFC')
-ylabel('CRP (Pa)')
-xlabel('Pi (Pa)')
-zlabel('BSFC (g/kW.h)')
-title('Brake Specific Fuel Consumption')
-colorbar('Ticks',[180,190,200],'TickLabels',{'Low','Medium','High'})
-
-% Showing minimum point
-hold on
-[min_val,i] = min(F_eval(:));
-h = scatter3(x1(i),x2(i),F_eval(i),'filled');
-h.SizeData = 150;
-hold off
+VisualizeData(b,bounds,X_op);

@@ -1,4 +1,4 @@
-function [F_eval,x1,x2] = VisualizeData(b,bounds,X_op)
+function VisualizeData(b,bounds,X_op)
 b1 = b.Estimate;
 f = @(X1,X2) b1(1) + b1(2)*X1 + b1(3)*X2 + b1(4)*X_op(3)...
       + b1(5)*X1*X2 + b1(6)*X1*X_op(3) + b1(7)*X2*X_op(3)...
@@ -24,6 +24,20 @@ for i = 1:length(x1)
  
     end
 end
-F_eval = F;
+
 surf(x1,x2,F)
+legend('BSFC')
+ylabel('CRP (Pa)')
+xlabel('Pi (Pa)')
+zlabel('BSFC (g/kW.h)')
+title('Brake Specific Fuel Consumption')
+colorbar('Ticks',[180,190,200],'TickLabels',{'Low','Medium','High'})
+
+% Showing minimum point
+hold on
+[~,i] = min(F(:));
+h = scatter3(x1(i),x2(i),F(i),'filled');
+h.SizeData = 150;
+hold off
+
 end
