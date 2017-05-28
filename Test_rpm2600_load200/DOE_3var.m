@@ -82,5 +82,4 @@ X0 = sum(bounds',1)/size(bounds',1);
 [X_op,fval,iter] = find_opt(X0,b.Estimate)
 
 % Visualize surface response (x3 fixed at optimal value)
-figure()
-VisualizeData(b,bounds,X_op);
+VisualizeData(b,bounds,X_op,fval);
