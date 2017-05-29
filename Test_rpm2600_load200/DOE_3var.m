@@ -1,30 +1,31 @@
-%% Importing data 
-clear all
-clc
-close all
+function DOE_3var(speed,load,ranges)
 % fitresult(x,y) = b0 + b1*x + b2*y + b12*x*y  + b11*x^2 + b22*y^2
-%data = importdata('20170518-1300rpm-load100.xlsx');
+
 %% Design of Experiments (DoE)
 
-range_x1 = [0.1,0.9];
-range_x2 = [1100,1400];
-range_x3 = [-4,13];
-% noise = rand;
+%ranges = [0.1, 0.9; 1100, 1400; -4, 13];
+% range_x1 = ranges(1,:);
+% range_x2 = ranges(2,:);
+% range_x3 = ranges(3,:);
+
+
 %[matrix,c1,c2,c3] = matrixDesign_3var(range_x1,range_x2,range_x3); %Getting running table
 %[matrix,c1,c2,c3] =  matrixDesign_BoxBehnken(range_x1,range_x2,range_x3);
 
 CodedValue = bbdesign(3);
-bounds = [range_x1; range_x2; range_x3];  % Min and max values for each factor
+% bounds = [range_x1; range_x2; range_x3];  % Min and max values for each factor
 matrix = zeros(size(CodedValue));
 for i = 1:size(CodedValue,2) % Convert coded values to real-world units
     zmax = max(CodedValue(:,i));
     zmin = min(CodedValue(:,i));
-    matrix(:,i) = interp1([zmin zmax],bounds(i,:),CodedValue(:,i));
+    matrix(:,i) = interp1([zmin zmax],ranges(i,:),CodedValue(:,i));
 end
 %% Data extracting & processing
 %[x1,x2,x3,y] = simulation_3var(matrix,noise);  %Model simulation
-rpm = 1600; load = 200; n = size(matrix,1);
-y = extractData(rpm,load,n);
+% rpm = 1600; load = 200; 
+n = size(matrix,1);
+%y = extractData(rpm,load,n);
+y = extractData(speed,load,n);
 x1 = zeros(length(matrix),1);
 x2 = zeros(length(matrix),1);
 x3 = zeros(length(matrix),1);
@@ -33,7 +34,7 @@ for i = 1:length(matrix)
    x_2 = matrix(i,2);
    x_3 = matrix(i,3);
       
-%    y(i,:) = 215 + cos(i*pi)*5*rand;
+
    x1(i,:) = x_1;
    x2(i,:) = x_2;
    x3(i,:) = x_3;
@@ -78,8 +79,11 @@ r_sqr = mdl.Rsquared
 %% Optimization
 
 %X0 = [c1 c2 c3];
-X0 = sum(bounds',1)/size(bounds',1);
+X0 = sum(ranges',1)/size(ranges',1);
 [X_op,fval,iter] = find_opt(X0,b.Estimate)
 
 % Visualize surface response (x3 fixed at optimal value)
-VisualizeData(b,bounds,X_op,fval);
+VisualizeData(b,ranges,X_op,fval);
+
+
+end
