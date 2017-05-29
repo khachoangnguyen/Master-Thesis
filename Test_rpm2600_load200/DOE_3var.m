@@ -1,4 +1,4 @@
-function DOE_3var(speed,load,ranges)
+function DOE_3var(mm,dd,speed,load,ranges)
 % fitresult(x,y) = b0 + b1*x + b2*y + b12*x*y  + b11*x^2 + b22*y^2
 
 %% Design of Experiments (DoE)
@@ -25,7 +25,7 @@ end
 % rpm = 1600; load = 200; 
 n = size(matrix,1);
 %y = extractData(rpm,load,n);
-y = extractData(speed,load,n);
+y = extractData(mm,dd,speed,load,n); %Extract experiment data by month,day,speed,load
 x1 = zeros(length(matrix),1);
 x2 = zeros(length(matrix),1);
 x3 = zeros(length(matrix),1);
