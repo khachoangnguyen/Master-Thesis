@@ -40,11 +40,12 @@ for m = 1:3
         figure()
         surf(x1,x2,F)
         legend('BSFC')
-        ylabel('CRP (Pa)')
-        xlabel('Pi (bar)')
-        zlabel('BSFC (g/kW.h)')
-        title('Brake Specific Fuel Consumption')
+        ylabel('CRP (bar)','fontsize',20)
+        xlabel('Pi (gauge pressure)','fontsize',20)
+        zlabel('BSFC (g/kW.h)','fontsize',20)
+        title('Brake Specific Fuel Consumption','fontsize',20)
         colorbar('Ticks',[180,190,200],'TickLabels',{'Low','Medium','High'})
+        set(gca,'fontsize',20)
         hold on
         h = scatter3(X_op(1),X_op(2),fval,'filled');
         h.SizeData = 150;
@@ -64,11 +65,12 @@ for m = 1:3
         figure()
         surf(x1,x2,F)
         legend('BSFC')
-        ylabel('SoI (deg)')
-        xlabel('Pi (bar)')
-        zlabel('BSFC (g/kW.h)')
-        title('Brake Specific Fuel Consumption')
+        ylabel('SoI (deg BTDC)','fontsize',20)
+        xlabel('Pi (gauge pressure)','fontsize',20)
+        zlabel('BSFC (g/kW.h)','fontsize',20)
+        title('Brake Specific Fuel Consumption','fontsize',20)
         colorbar('Ticks',[180,190,200],'TickLabels',{'Low','Medium','High'})
+        set(gca,'fontsize',20)
         hold on
         h = scatter3(X_op(1),X_op(3),fval,'filled');
         h.SizeData = 150;
@@ -89,11 +91,12 @@ for m = 1:3
         figure()
         surf(x1,x2,F)
         legend('BSFC')
-        ylabel('SoI (deg)')
-        xlabel('CRP (Pa)')
-        zlabel('BSFC (g/kW.h)')
-        title('Brake Specific Fuel Consumption')
+        ylabel('SoI (deg BTDC)','fontsize',20)
+        xlabel('CRP (bar)','fontsize',20)
+        zlabel('BSFC (g/kW.h)','fontsize',20)
+        title('Brake Specific Fuel Consumption','fontsize',20)
         colorbar('Ticks',[180,190,200],'TickLabels',{'Low','Medium','High'})
+        set(gca,'fontsize',20)
         hold on
         h = scatter3(X_op(2),X_op(3),fval,'filled');
         h.SizeData = 150;

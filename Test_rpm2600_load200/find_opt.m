@@ -1,4 +1,4 @@
-function [x_op,fval,iter] = find_opt(X0,b)
+function [x_op,fval,iter] = find_opt(X0,b,ranges)
 f = @(X1,X2,X3) b(1) + b(2)*X1 + b(3)*X2 + b(4)*X3...
       + b(5)*X1*X2 + b(6)*X1*X3 + b(7)*X2*X3...
       + b(8)*X1^2 + b(9)*X2^2 + b(10)*X3^2;
@@ -10,8 +10,8 @@ A = [];
 b = [];
 Aeq = [];
 beq = [];
-lb = [0.07,750,-0.2];
-ub = [0.37,1350,12];
+lb = ranges(:,1)';
+ub = ranges(:,2)';
 nonlcon = [];
 options = optimoptions(@fmincon,'Algorithm','sqp','MaxIterations',150);
 %sequential quadratic programming

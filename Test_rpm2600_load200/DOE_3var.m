@@ -80,10 +80,15 @@ r_sqr = mdl.Rsquared
 
 %X0 = [c1 c2 c3];
 X0 = sum(ranges',1)/size(ranges',1);
-[X_op,fval,iter] = find_opt(X0,b.Estimate)
+[X_op,fval,iter] = find_opt(X0,b.Estimate,ranges)
 
 % Visualize surface response (x3 fixed at optimal value)
 VisualizeData(b,ranges,X_op,fval);
-
+%% Data saving
+data = struct('Pi',x1,'CRP',x2,'SoI',x3,'BSFC',y,'Coefficients',b.Estimate,'Optimal_points',X_op,...
+    'Minimum_values',fval,'Modelling',mdl);
+datetime = datestr(date);
+datetime=strrep(datetime,'-','_');%Replace minus sign with underscore
+save(datetime,'data')
 
 end

@@ -10,7 +10,8 @@ for k = 1:numfiles
     temp_in = all_data{1,k};
     bsfc = zeros(size(temp_in,1),1);
     for i = 1:size(temp_in,1)
-        bsfc(i) = (2*temp_in(i,14)/1000*60*temp_in(i,1))/(temp_in(i,1)*2*pi/60*temp_in(i,3)/1000);
+        bsfc(i) = (2*(temp_in(i,14)+30)/1000*60*temp_in(i,1))/(temp_in(i,1)*2*pi/60*temp_in(i,3)/1000);
+        %bsfc(i) = (temp_in(i,17))/(temp_in(i,1)*2*pi/60*temp_in(i,3)/1000);
     end
     BSFC(k) = mean(bsfc);
 end
